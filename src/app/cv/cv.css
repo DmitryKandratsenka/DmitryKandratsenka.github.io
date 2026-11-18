@@ -313,6 +313,16 @@
 .cv-entry:last-child {
   border-left-color: transparent;
 }
+/* The last entry in a section still gets the line, down to its dot. */
+.cv-entry:last-child::before {
+  content: '';
+  position: absolute;
+  left: -0.3mm;
+  top: 0;
+  width: 0.3mm;
+  height: 5.6mm;
+  background: var(--cv-ink);
+}
 .cv-entry-edu {
   padding-bottom: 6mm;
 }

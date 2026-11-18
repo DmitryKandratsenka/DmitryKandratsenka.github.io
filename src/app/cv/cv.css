@@ -68,7 +68,7 @@
 .cv-side {
   position: relative;
   z-index: 1;
-  padding: 8mm 5mm 8mm calc(var(--rail-l) + 6mm);
+  padding: 8mm calc(2 * var(--stripe) + 5mm) 8mm calc(var(--rail-l) + 5mm);
   color: #fff;
 }
 .cv-contact {
@@ -81,9 +81,9 @@
 .cv-contact li {
   display: grid;
   grid-template-columns: 6mm 1fr;
-  gap: 3.5mm;
+  gap: 3mm;
   align-items: start;
-  font-size: 9.6pt;
+  font-size: 9.2pt;
   line-height: 1.35;
   overflow-wrap: break-word;
 }
@@ -101,21 +101,21 @@
 .cv-shead {
   display: flex;
   align-items: center;
-  gap: 3.5mm;
+  gap: 3mm;
   margin: 0 0 4.5mm;
 }
 .cv-shead h2 {
   margin: 0;
-  font-size: 15pt;
+  font-size: 13pt;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.015em;
   text-transform: uppercase;
 }
 .cv-badge-light {
   display: grid;
   place-items: center;
-  width: 9.5mm;
-  height: 9.5mm;
+  width: 8.5mm;
+  height: 8.5mm;
   border-radius: 50%;
   background: #fff;
   color: var(--cv-slate);
@@ -138,8 +138,8 @@
   background: var(--cv-chip);
   color: #1f2733;
   border-radius: 1mm;
-  padding: 1.1mm 2.6mm;
-  font-size: 9.6pt;
+  padding: 1mm 2.1mm;
+  font-size: 9.2pt;
   line-height: 1.3;
 }
 .cv-chips-outline li {
@@ -174,9 +174,6 @@
   padding-top: 0;
 }
 /* Longer headings here; one size down so they stay on one line. */
-.cv-side-sec .cv-shead h2 {
-  font-size: 13pt;
-}
 .cv-stats {
   margin: 0;
   display: grid;

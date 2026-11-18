@@ -297,7 +297,7 @@ export default function Home() {
       {/* ───────────── Also built ───────────── */}
       <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
         <SectionHead index="03" title="Also built" note="Products and tools of my own" />
-        <div className="divide-y divide-line border-y border-line">
+        <div className="-mt-4 divide-y divide-line border-b border-line">
           {alsoBuilt.map((p, i) => {
             const inner = (
               <div className="grid gap-3 py-6 md:grid-cols-[200px_1fr_auto] md:gap-8">

@@ -210,14 +210,14 @@ export const ventures: Venture[] = [
 
 export const alsoBuilt = [
   {
-    name: 'Sklad',
-    kind: 'Co-founder & CTO',
-    year: '2022 —',
+    name: 'CatDog',
+    kind: 'AI audio app',
+    year: '2026',
     description:
-      'Inventory SaaS for small businesses: barcode, QR and NFC scanning, multi-location stock, team roles and an audit log. iPhone, iPad, Mac and web, 14 languages.',
-    detail: 'Led the move from serverless cloud functions to a NestJS backend.',
-    stack: ['NestJS', 'MySQL', 'Next.js', 'SwiftUI', 'Stripe'],
-    url: 'https://sklad.app',
+      'Record your cat or dog and hear what it is "saying". An audio model listens to the clip, a second pass returns a structured interpretation with a confidence score, and a voice endpoint reads it back.',
+    detail:
+      'I built the backend and the site: usage allowances, per-request cost tracking, history. Shares the AI backend with Mealfy; iOS app built with a teammate.',
+    stack: ['NestJS', 'Audio LLM', 'Structured outputs', 'Next.js'],
   },
   {
     name: 'Mealfy AI',

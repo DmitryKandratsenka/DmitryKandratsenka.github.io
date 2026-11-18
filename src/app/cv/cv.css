@@ -13,7 +13,7 @@
   --rail-l: 2.5mm;
   --stripe: 1.6mm;
   --main-l: 73mm;
-  --main-r: 11mm;
+  --main-r: 9mm;
   font-family: var(--font-roboto), Roboto, Helvetica, Arial, sans-serif;
   color: var(--cv-text);
   background: #e9eaed;
@@ -242,7 +242,7 @@
 
 /* ── Main column ── */
 .cv-main {
-  padding: 8mm var(--main-r) 12mm 6mm;
+  padding: 8mm var(--main-r) 12mm 10.5mm;
   min-width: 0;
 }
 .cv-head h1 {
@@ -297,7 +297,7 @@
 /* Entries hang off a thin vertical line, each marked by a teal dot. */
 .cv-entry {
   position: relative;
-  padding: 2.4mm 0 3.2mm 5.5mm;
+  padding: 2mm 0 2.6mm 5.5mm;
   margin-left: -1.6mm;
   border-left: 0.3mm solid var(--cv-ink);
 }
@@ -354,6 +354,7 @@
   color: var(--cv-muted);
 }
 .cv-label {
+  break-after: avoid;
   margin: 0 0 1mm;
   font-size: 9.6pt;
   font-style: italic;

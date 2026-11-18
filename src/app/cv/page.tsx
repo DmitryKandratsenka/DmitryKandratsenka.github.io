@@ -157,9 +157,9 @@ function Entry({
           <span>{dates}</span>
           <span>{location}</span>
         </p>
-        {context && <p className="cv-context">{context}</p>}
-        <p className="cv-label">Achievements/Tasks</p>
       </div>
+      {context && <p className="cv-context">{context}</p>}
+      <p className="cv-label">Achievements/Tasks</p>
       <ul>
         {bullets.map((b) => (
           <li key={b}>

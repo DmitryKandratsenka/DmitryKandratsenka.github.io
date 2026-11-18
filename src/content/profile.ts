@@ -201,9 +201,8 @@ export const ventures: Venture[] = [
     summary:
       'Inventory management for small businesses on iPhone, iPad, Mac and web, in 14 languages.',
     bullets: [
-      'Own the product architecture and technical strategy from MVP to production.',
+      'Own the architecture from MVP to production; built the web app from scratch (Next.js, React, MUI) with Firebase Auth, Stripe and StoreKit billing.',
       'Led the migration from serverless cloud functions to a NestJS backend; MySQL schema, migrations and performance.',
-      'Built the web app from scratch (Next.js, React, MUI); Firebase Auth, Stripe and StoreKit billing.',
     ],
     stack: 'NestJS, TypeORM, MySQL, Next.js, React, MUI, Firebase, Stripe, SwiftUI',
   },

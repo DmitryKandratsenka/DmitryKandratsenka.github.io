@@ -1,0 +1,72 @@
+import { Decision, Stats, Figure } from '@/components/cs';
+import { RtlDemo } from '@/components/diagrams/RtlDemo';
+
+## The problem
+
+Reddit's web app is built from Lit web components, owned by many teams. Supporting Arabic means the whole interface has to read right to left: navigation, feeds, menus, composers and every arrow that points "forward".
+
+Fixing today's screens was the easy half. The hard half was that the next pull request from any team could break them again, because nothing stopped someone writing `margin-left`. So the goal had two parts: **launch Arabic to real users, and make right-to-left hard to break.**
+
+## One rule does the mirroring
+
+<Figure caption="The same markup and the same stylesheet. Only the dir attribute changes. Press the button to flip it. The subreddit name stays left-to-right inside Arabic text, and the arrow flips with the reading direction.">
+  <RtlDemo />
+</Figure>
+
+## Decisions
+
+<Decision n="01" title="Logical properties are the one approach, for every team" tradeoff="A few things must not mirror, such as media controls and some icons. Those exceptions are explicit and rare, so they stand out in review.">
+
+Every direction-dependent style uses `inline-start` and `inline-end` instead of `left` and `right`. Mirroring then becomes the browser's job: set `dir="rtl"` and the layout follows.
+
+There's no second stylesheet and no RTL overrides to keep in sync, and every team writes styles the same way.
+
+</Decision>
+
+<Decision n="02" title="A codemod did the migration, not people">
+
+Rewriting existing component styles by hand, team by team, would have taken months and still missed cases. A codemod converted physical properties to logical ones in bulk, so each team reviewed a diff instead of writing one.
+
+</Decision>
+
+<Decision n="03" title="A lint rule keeps it fixed">
+
+Once the code was migrated, a lint rule failed any new physical property and pointed to its logical equivalent. It runs in CI on every team's code, so the guarantee doesn't depend on anyone remembering.
+
+</Decision>
+
+<Decision n="04" title="Fix it once, in the shared components">
+
+RTL correctness went into the shared UI components first. Every team that used them got right-to-left support with no work, and the codemod and lint rule only had to cover what was built on top.
+
+</Decision>
+
+<Decision n="05" title="Written down, then taught">
+
+I wrote the approach up as a guide, with do and don't examples, for teams to follow. Then I reviewed other teams' pull requests and ran office hours while they migrated their surfaces.
+
+The guide explained the rule and the lint check enforced it, which is what made it one approach across teams instead of several.
+
+</Decision>
+
+<Decision n="06" title="Shipped like a risky change, because it was">
+
+Arabic went out behind a feature flag, with a rollout plan for 2M+ potential users: gradual exposure, monitoring at each step and a rollback path. An experiment measured the impact of launching Arabic and RTL for global audiences.
+
+Arabic launched to users.
+
+</Decision>
+
+## Results
+
+<Stats
+  items={[
+    { value: '2M+', label: 'Potential users in the staged rollout' },
+    { value: 'Live', label: 'Arabic launched to users' },
+    { value: 'CI', label: 'Lint rule on every team’s code' },
+  ]}
+/>
+
+Alongside RTL, I worked with backend, design and localisation teams to standardise how new locales ship, and made the i18n components faster by cutting needless Lit re-renders and payload size.
+
+> A fix is good for a release. A fix nobody can break is good for the next hundred. Automation is what turns a one-off project into a standard.

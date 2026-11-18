@@ -32,18 +32,14 @@ export function Decision({
 }
 
 export function Stats({ items }: { items: { value: string; label: string }[] }) {
+  const cols = items.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4';
   return (
     <dl
       data-reveal
-      className="my-10 grid grid-cols-2 overflow-hidden rounded-xl border border-line md:grid-cols-4"
+      className={`my-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line ${cols}`}
     >
-      {items.map((s, i) => (
-        <div
-          key={s.label}
-          className={`flex flex-col bg-bg-raised/60 p-4 md:p-5 ${i % 2 ? 'border-l border-line' : ''} ${
-            i >= 2 ? 'border-t border-line md:border-t-0' : ''
-          } ${i === 2 ? 'md:border-l' : ''}`}
-        >
+      {items.map((s) => (
+        <div key={s.label} className="flex flex-col bg-bg-raised p-4 md:p-5">
           <dt className="order-2 mt-1 text-[12px] leading-snug text-fg-muted">{s.label}</dt>
           <dd className="font-mono text-[22px] font-medium text-fg tabular-nums">{s.value}</dd>
         </div>

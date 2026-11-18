@@ -86,6 +86,7 @@ export const experience: Role[] = [
       'Improved performance of i18n components by optimising the Lit rendering lifecycle and reducing re-renders and payload sizes.',
     ],
     stack: 'Lit, TypeScript, GraphQL, React Query, feature flags, Jest, Playwright, GitHub Actions',
+    caseStudy: 'reddit-rtl',
   },
   {
     title: 'Senior Software Developer',
@@ -260,7 +261,7 @@ export const caseStudies = [
     slug: 'spoonbill',
     index: '02',
     eyebrow: 'Full-stack product',
-    title: 'Invoicing that holds up under German e-invoicing law',
+    title: 'Invoicing that holds up under German e‑invoicing law',
     summary:
       'One Nx monorepo: NestJS API, React web app, Next.js landing, Expo iOS app, and a shared tax engine for Germany, Austria and Switzerland.',
     period: 'Aug 2026 — present',
@@ -272,10 +273,25 @@ export const caseStudies = [
     ],
   },
   {
-    slug: 'microsoft-micro-frontends',
+    slug: 'reddit-rtl',
     index: '03',
+    eyebrow: 'Frontend at scale',
+    title: 'Right‑to‑left at Reddit, made hard to break',
+    summary:
+      'I led Arabic support on Reddit’s web app, then made it stick across teams with one approach, a codemod, a lint rule in CI and a staged rollout to 2M+ users.',
+    period: 'Jul 2025 — Jun 2026',
+    role: 'Senior Software Developer, i18n',
+    metrics: [
+      { value: '2M+', label: 'Users in the rollout' },
+      { value: 'Live', label: 'Arabic launched' },
+      { value: 'CI', label: 'Lint guards every team' },
+    ],
+  },
+  {
+    slug: 'microsoft-micro-frontends',
+    index: '04',
     eyebrow: 'Frontend leadership',
-    title: 'Micro-frontends with one sign-in, and the team to ship them',
+    title: 'Micro‑frontends with one sign‑in, and the team to ship them',
     summary:
       'At Microsoft (Nuance) I led 10 developers and 6 QA through a Module Federation architecture, a department-wide component library and 3 launches.',
     period: 'May 2021 — Feb 2023',

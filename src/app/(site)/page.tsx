@@ -19,6 +19,7 @@ import { Rich } from '@/components/Rich';
 import { LaneChart } from '@/components/diagrams/LaneChart';
 import { SpoonbillArch } from '@/components/diagrams/SpoonbillArch';
 import { FederationDiagram } from '@/components/diagrams/FederationDiagram';
+import { RtlDemo } from '@/components/diagrams/RtlDemo';
 
 function SectionHead({ index, title, note }: { index: string; title: string; note?: string }) {
   return (
@@ -35,6 +36,7 @@ function SectionHead({ index, title, note }: { index: string; title: string; not
 const visuals = {
   'agent-fleet': <LaneChart compact />,
   spoonbill: <SpoonbillArch compact />,
+  'reddit-rtl': <RtlDemo compact />,
   'microsoft-micro-frontends': <FederationDiagram compact />,
 } as const;
 
@@ -133,7 +135,7 @@ export default function Home() {
 
       {/* ───────────── Selected work ───────────── */}
       <section id="work" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-16 md:px-8 md:py-24">
-        <SectionHead index="01" title="Selected work" note="Three case studies, read in about 5 minutes each" />
+        <SectionHead index="01" title="Selected work" note={`${caseStudies.length} case studies, about 5 minutes each`} />
 
         <Spotlight as="article" className="group rounded-2xl border border-line bg-bg-raised">
           <Link
@@ -168,40 +170,61 @@ export default function Home() {
         </Spotlight>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
-          {rest.map((cs, i) => (
-            <Spotlight
-              key={cs.slug}
-              as="article"
-              className="group rounded-2xl border border-line bg-bg-raised"
-            >
-              <Link
-                href={`/work/${cs.slug}/`}
-                data-reveal
-                style={{ ['--i' as string]: i }}
-                className="nudge-on-hover flex h-full flex-col p-6 md:p-8"
+          {rest.map((cs, i) => {
+            // An odd card out spans the row, laid out like the lead card.
+            const wide = rest.length % 2 === 1 && i === rest.length - 1;
+            const metrics = (
+              <dl className="flex gap-6">
+                {cs.metrics.slice(0, wide ? 3 : 2).map((m) => (
+                  <div key={m.label}>
+                    <dd className="font-mono text-[17px] font-medium text-fg tabular-nums">{m.value}</dd>
+                    <dt className="mt-0.5 text-[11.5px] text-fg-muted">{m.label}</dt>
+                  </div>
+                ))}
+              </dl>
+            );
+            return (
+              <Spotlight
+                key={cs.slug}
+                as="article"
+                className={`group rounded-2xl border border-line bg-bg-raised ${wide ? 'md:col-span-2' : ''}`}
               >
-                <p className="font-mono text-[11px] text-fg-faint">
-                  {cs.index} · <span className="text-accent">{cs.eyebrow}</span>
-                </p>
-                <h3 className="mt-3 text-[20px] font-semibold leading-snug tracking-[-0.015em] text-fg [text-wrap:balance] md:text-[22px]">
-                  {cs.title}
-                </h3>
-                <p className="mt-2.5 text-[14.5px] leading-relaxed text-fg-muted">{cs.summary}</p>
-                <div className="mt-6 rounded-xl border border-line bg-surface/60 p-4">{visuals[cs.slug]}</div>
-                <div className="mt-6 flex items-end justify-between gap-4 pt-1">
-                  <dl className="flex gap-6">
-                    {cs.metrics.slice(0, 2).map((m) => (
-                      <div key={m.label}>
-                        <dd className="font-mono text-[17px] font-medium text-fg tabular-nums">{m.value}</dd>
-                        <dt className="mt-0.5 text-[11.5px] text-fg-muted">{m.label}</dt>
+                <Link
+                  href={`/work/${cs.slug}/`}
+                  data-reveal
+                  style={{ ['--i' as string]: i }}
+                  className={`nudge-on-hover h-full p-6 md:p-8 ${
+                    wide ? 'grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12' : 'flex flex-col'
+                  }`}
+                >
+                  <div className="flex flex-col">
+                    <p className="font-mono text-[11px] text-fg-faint">
+                      {cs.index} · <span className="text-accent">{cs.eyebrow}</span>
+                    </p>
+                    <h3 className="mt-3 text-[20px] font-semibold leading-snug tracking-[-0.015em] text-fg [text-wrap:balance] md:text-[22px]">
+                      {cs.title}
+                    </h3>
+                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-fg-muted">{cs.summary}</p>
+                    {wide && (
+                      <div className="mt-6 flex items-end justify-between gap-4 lg:mt-auto lg:pt-8">
+                        {metrics}
+                        <ArrowRight size={16} className="nudge mb-1 shrink-0 text-fg-muted" aria-hidden />
                       </div>
-                    ))}
-                  </dl>
-                  <ArrowRight size={16} className="nudge mb-1 shrink-0 text-fg-muted" aria-hidden />
-                </div>
-              </Link>
-            </Spotlight>
-          ))}
+                    )}
+                  </div>
+                  <div className={`rounded-xl border border-line bg-surface/60 p-4 ${wide ? 'self-center' : 'mt-6'}`}>
+                    {visuals[cs.slug]}
+                  </div>
+                  {!wide && (
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-7">
+                      {metrics}
+                      <ArrowRight size={16} className="nudge mb-1 shrink-0 text-fg-muted" aria-hidden />
+                    </div>
+                  )}
+                </Link>
+              </Spotlight>
+            );
+          })}
         </div>
       </section>
 

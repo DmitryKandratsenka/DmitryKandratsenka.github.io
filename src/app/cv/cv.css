@@ -164,6 +164,82 @@
   color: #e6e9ee;
 }
 
+/* Sidebar, continued: fills the rail below page 1. Sections use padding,
+   not margin, so a section that starts a new page keeps its top space. */
+.cv-side-sec {
+  padding-top: 7mm;
+  break-inside: avoid;
+}
+.cv-side-sec:first-child {
+  padding-top: 0;
+}
+/* Longer headings here; one size down so they stay on one line. */
+.cv-side-sec .cv-shead h2 {
+  font-size: 13pt;
+}
+.cv-stats {
+  margin: 0;
+  display: grid;
+  gap: 3.4mm;
+}
+.cv-stats div {
+  display: flex;
+  flex-direction: column;
+}
+.cv-stats dd {
+  order: -1;
+  margin: 0;
+  font-size: 18pt;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #fff;
+}
+.cv-stats dt {
+  font-size: 9.2pt;
+  font-style: italic;
+  color: var(--cv-teal-light);
+  line-height: 1.3;
+}
+.cv-side-list,
+.cv-side-projects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2.6mm;
+}
+.cv-side-list li {
+  position: relative;
+  padding-left: 4mm;
+  font-size: 9.8pt;
+  line-height: 1.35;
+}
+.cv-side-list li::before {
+  content: '';
+  position: absolute;
+  left: 0.3mm;
+  top: 1.7mm;
+  width: 1.3mm;
+  height: 1.3mm;
+  border-radius: 50%;
+  background: var(--cv-teal-light);
+}
+.cv-side-projects li {
+  display: grid;
+  gap: 0.4mm;
+  font-size: 10.2pt;
+}
+.cv-side-projects em,
+.cv-side-projects a {
+  font-size: 9.2pt;
+  line-height: 1.3;
+  color: #e6e9ee;
+  text-decoration: none;
+}
+.cv-side-projects em {
+  font-style: italic;
+}
+
 /* ── Main column ── */
 .cv-main {
   padding: 8mm var(--main-r) 12mm 6mm;
@@ -411,6 +487,11 @@
     width: 210mm;
     box-shadow: none;
     min-height: 0;
+  }
+  /* The extra sidebar sections start at the top of page 2. */
+  .cv-side-more {
+    break-before: page;
+    padding-top: 7mm;
   }
   /* position: fixed repeats an element on every printed page. */
   .cv-rail {

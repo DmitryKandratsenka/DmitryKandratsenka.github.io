@@ -307,6 +307,36 @@ export const cvLanguages = [
 
 export const cvInterests = ['Chess', 'Soccer', 'Kitesurfing'];
 
+/* Sidebar, page 2 onwards: the strongest numbers, scannable in seconds. */
+export const cvHighlights = [
+  { value: '16', label: 'People led at Microsoft, 10 devs + 6 QA' },
+  { value: '3,009', label: 'PRs merged by my agent fleet in 15 weeks' },
+  { value: '2M+', label: 'Users in the Reddit Arabic/RTL rollout plan' },
+  { value: '90%', label: 'E2E coverage, Playwright + CucumberJS' },
+  { value: '6/day', label: 'Production deploys on Spoonbill' },
+];
+
+/* From the original CV's Achievements section. */
+export const cvAchievements = [
+  'Led a team of 10 developers and 6 QA engineers (Microsoft, 2021–2023)',
+  'Built a financial web app alone, from scratch to production (2016–2020)',
+  'Delivered multiple web applications from scratch to production as Technical Lead and Product Owner',
+  'Designed a 30-routine AI agent fleet that builds and ships two products',
+];
+
+export const cvProjects = [
+  { name: 'Mealfy AI', note: 'NestJS API generating meals and nutrition with an LLM, with usage limits and App Check' },
+  { name: 'lead-trail', note: 'LLM pipeline that finds and classifies leads across Reddit, Telegram and forums' },
+  { name: 'Vendor Interface', note: 'Financial SPA built solo: Java, Spring Boot, React, MySQL (2016–2020)' },
+];
+
+export const cvOnline = [
+  { label: 'Portfolio', value: 'dmitrykandratsenka.github.io', href: 'https://dmitrykandratsenka.github.io' },
+  { label: 'Case studies', value: '…github.io/work', href: 'https://dmitrykandratsenka.github.io/#work' },
+  { label: 'Spoonbill', value: 'spoonbill.app', href: 'https://spoonbill.app' },
+  { label: 'Sklad', value: 'sklad.app', href: 'https://sklad.app' },
+];
+
 export const education = {
   degree: 'Information technology software, Bachelor’s degree',
   school: 'Belarusian State University of Informatics and Radioelectronics',

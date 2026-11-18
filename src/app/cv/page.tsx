@@ -1,6 +1,18 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import { cvInterests, cvLanguages, cvSkills, education, experience, profile, ventures } from '@/content/profile';
+import {
+  cvAchievements,
+  cvHighlights,
+  cvInterests,
+  cvLanguages,
+  cvOnline,
+  cvProjects,
+  cvSkills,
+  education,
+  experience,
+  profile,
+  ventures,
+} from '@/content/profile';
 import { CvToolbar } from './CvToolbar';
 import { Rich } from '@/components/Rich';
 import './cv.css';
@@ -80,6 +92,16 @@ const I = {
     <svg viewBox="0 0 24 24" aria-hidden>
       <rect x="3.5" y="7" width="17" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1.8" />
       <path d="M9 7V5h6v2M3.5 12h17M10.5 12v2h3v-2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  ),
+  chart: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <path d="M4 20h16M7 16v-5M12 16V6M17 16v-8" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  ),
+  trophy: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <path d="M8 4h8v5a4 4 0 01-8 0V4zM8 6H5v1a3 3 0 003 3M16 6h3v1a3 3 0 01-3 3M12 13v4M9 20h6M10 17h4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" strokeLinecap="round" />
     </svg>
   ),
   rocket: (
@@ -212,6 +234,54 @@ export default function CvPage() {
               <li key={s}>{s}</li>
             ))}
           </ul>
+
+          {/* Page 2 onwards in print; straight after Interests on screen. */}
+          <div className="cv-side-more">
+            <section className="cv-side-sec">
+              <SideHeading icon={I.chart}>Numbers</SideHeading>
+              <dl className="cv-stats">
+                {cvHighlights.map((h) => (
+                  <div key={h.label}>
+                    <dt>{h.label}</dt>
+                    <dd>{h.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+
+            <section className="cv-side-sec">
+              <SideHeading icon={I.trophy}>Achievements</SideHeading>
+              <ul className="cv-side-list">
+                {cvAchievements.map((a) => (
+                  <li key={a}>{a}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="cv-side-sec">
+              <SideHeading icon={I.rocket}>Projects</SideHeading>
+              <ul className="cv-side-projects">
+                {cvProjects.map((p) => (
+                  <li key={p.name}>
+                    <span>{p.name}</span>
+                    <em>{p.note}</em>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="cv-side-sec">
+              <SideHeading icon={I.globe}>Online</SideHeading>
+              <ul className="cv-side-projects">
+                {cvOnline.map((o) => (
+                  <li key={o.label}>
+                    <span>{o.label}</span>
+                    <a href={o.href}>{o.value}</a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
         </aside>
 
         <main className="cv-main">

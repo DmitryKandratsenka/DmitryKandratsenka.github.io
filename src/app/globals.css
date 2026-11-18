@@ -1,0 +1,300 @@
+@import 'tailwindcss';
+
+/* Theme is chosen by a tiny inline script before paint (see layout.tsx):
+   html[data-theme="dark" | "light"]. Dark is the default. */
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b0c0f;
+  --bg-raised: #101115;
+  --surface: #14151a;
+  --surface-2: #1a1b21;
+  --line: rgb(255 255 255 / 0.07);
+  --line-strong: rgb(255 255 255 / 0.13);
+  --fg: #ecedf0;
+  --fg-muted: #9b9da6;
+  --fg-faint: #63656e;
+  /* Indigo, held under 80% saturation so it reads as precise, not neon. */
+  --accent: #8689e9;
+  --accent-fg: #0b0c0f;
+  --accent-soft: rgb(134 137 233 / 0.12);
+  --accent-line: rgb(134 137 233 / 0.35);
+  --ok: #5fc59a;
+  --warn: #e0b25c;
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  --grid-dot: rgb(255 255 255 / 0.045);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #fafafb;
+  --bg-raised: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f3f3f6;
+  --line: rgb(16 18 27 / 0.08);
+  --line-strong: rgb(16 18 27 / 0.15);
+  --fg: #111318;
+  --fg-muted: #5b5e68;
+  --fg-faint: #8d909a;
+  --accent: #4f52c4;
+  --accent-fg: #ffffff;
+  --accent-soft: rgb(79 82 196 / 0.08);
+  --accent-line: rgb(79 82 196 / 0.3);
+  --ok: #1f8f62;
+  --warn: #a8721b;
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.8) inset, 0 24px 48px -28px rgb(16 18 27 / 0.18);
+  --grid-dot: rgb(16 18 27 / 0.06);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', monospace;
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--bg);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--fg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Theme switch: colours cross-fade, nothing moves. Only applied while
+   switching (the .theming class), so normal hovers keep their own timing. */
+.theming,
+.theming * {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    fill 220ms ease !important;
+}
+
+/* A pressable thing confirms the press. */
+.press {
+  transition: transform 160ms var(--ease-out-strong);
+}
+.press:active {
+  transform: scale(0.97);
+}
+
+/* Dotted backdrop, fixed so it never repaints while scrolling. */
+.backdrop-dots {
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000 30%, transparent 75%);
+}
+
+/* Section reveal on scroll: CSS only, driven by a data attribute that an
+   IntersectionObserver flips once. Opacity + transform, nothing else. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(4px);
+  transition:
+    opacity 700ms var(--ease-out-strong),
+    transform 700ms var(--ease-out-strong),
+    filter 700ms var(--ease-out-strong);
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+[data-reveal='in'] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transform: none;
+    filter: none;
+    transition: opacity 300ms ease;
+  }
+}
+/* Without JS everything is visible. */
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Hero text: staggered entrance on first paint, pure CSS. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.rise {
+  opacity: 0;
+  animation: rise 900ms var(--ease-out-strong) forwards;
+  animation-delay: calc(var(--i, 0) * 80ms + 60ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: fade 400ms ease forwards;
+  }
+}
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover-only motion is gated to real pointers, so taps never stick. */
+@media (hover: hover) and (pointer: fine) {
+  .lift {
+    transition:
+      transform 220ms var(--ease-out-strong),
+      border-color 220ms ease,
+      background-color 220ms ease;
+  }
+  .lift:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+  }
+  .nudge-on-hover .nudge {
+    transition: transform 220ms var(--ease-out-strong);
+  }
+  .nudge-on-hover:hover .nudge {
+    transform: translateX(3px);
+  }
+}
+
+/* Spotlight border that follows the pointer (set via --mx/--my in JS). */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    320px circle at var(--mx, -100%) var(--my, -100%),
+    var(--accent-line),
+    transparent 60%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+}
+
+.verify {
+  background: color-mix(in oklab, var(--warn) 22%, transparent);
+  color: var(--warn);
+  border: 1px solid color-mix(in oklab, var(--warn) 45%, transparent);
+  border-radius: 4px;
+  padding: 0 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  letter-spacing: 0.02em;
+  vertical-align: 0.15em;
+}
+
+/* Lane chart: each run grows in from its start time, in time-of-day order. */
+[data-reveal] .lane-bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 700ms var(--ease-out-strong);
+  transition-delay: calc(var(--d, 0ms) + 150ms);
+}
+[data-reveal='in'] .lane-bar,
+.no-js .lane-bar {
+  transform: scaleX(1);
+}
+/* Throughput bars grow from the baseline. */
+[data-reveal] .grow-x {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 800ms var(--ease-out-strong);
+  transition-delay: calc(var(--i, 0) * 70ms + 150ms);
+}
+[data-reveal='in'] .grow-x,
+.no-js .grow-x {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] .lane-bar,
+  [data-reveal] .grow-x {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Federation diagram: each remote "loads" into the shell, staggered. */
+[data-reveal] .fed-pulse {
+  transform: scaleX(0.08);
+  transform-origin: left center;
+  transition: transform 900ms var(--ease-in-out-strong);
+  transition-delay: calc(var(--i, 0) * 180ms + 250ms);
+}
+[data-reveal='in'] .fed-pulse,
+.no-js .fed-pulse {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] .fed-pulse {
+    transform: none;
+    transition: none;
+  }
+}

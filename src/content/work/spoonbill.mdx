@@ -1,0 +1,69 @@
+import { Decision, Stats, Figure } from '@/components/cs';
+import { SpoonbillArch } from '@/components/diagrams/SpoonbillArch';
+
+## The product
+
+Spoonbill is invoicing for freelancers and small teams in Germany, Austria and Switzerland. You send an invoice as a link or a PDF, and it handles reminders, recurring invoices, quotes, credit notes, multiple currencies and a "Pay now" button through Stripe Connect. It's free for five sends a month, and Pro is €9.
+
+The interface is small. The hard part sits underneath: **an invoice is a legal document**. In Germany a small business under §19 UStG must say it charges no VAT, and say it the right way. Swiss clients expect a QR-bill and read `CHF 1’234.50`, not `1.234,50 CHF`. Since 2025, German businesses must be able to receive e-invoices, which means ZUGFeRD and XRechnung files that a government validator will reject over one wrong field.
+
+## Architecture
+
+<Figure caption="Four apps, one shared core. The tax engine, the money model and the e-invoice writers are one TypeScript package that every app imports.">
+  <SpoonbillArch />
+</Figure>
+
+It's one Nx monorepo: a NestJS API on MySQL, a React and Vite web app, a Next.js landing site, an Expo iOS app, and `packages/shared`. Production runs in Docker behind Caddy, and CircleCI deploys it six times a day. The code is written by the [agent fleet](/work/agent-fleet/) I designed. The architecture, the rules and the calls on money and law are mine.
+
+## Decisions
+
+<Decision n="01" title="One shared core computes every number, everywhere" tradeoff="Every change to the core ships to three apps at once, so a change both platforms consume gets its own branch and lands on its own.">
+
+The total a client sees on the phone is computed by the same code that wrote the PDF and the e-invoice XML. That code includes money, cash rounding, tax bands, credit-note amounts and advance-payment lines.
+
+If the web, mobile and API each computed totals separately, they would eventually disagree by a cent, and on an invoice a cent is a bug.
+
+</Decision>
+
+<Decision n="02" title="Country rules live in packs, each sentence tied to its source" tradeoff="Packs are slower to write than if-statements. They are the only form a non-lawyer can audit.">
+
+Each country is a pack: tax bands, number formats, required wording and the e-invoice mandate, with **every legal sentence cited to its primary source**. A weekly routine re-checks one pack against those sources and files a ticket for anything that has drifted.
+
+It's not a licensed accountant, and the docs say so. It does catch the drift a solo founder never would.
+
+</Decision>
+
+<Decision n="03" title="E-invoices are checked by the official validators, not by our own opinion">
+
+ZUGFeRD (CII) and XRechnung (UBL) output is validated against the official EN 16931 Schematron rules, plus the Austrian CIUS, in the test suite. A file that would be rejected by a tax office fails a test first.
+
+E-invoicing is on every plan, including free, because a German business can't opt out of the law.
+
+</Decision>
+
+<Decision n="04" title="Language and local convention are different settings" tradeoff="Twice the formatting matrix to test.">
+
+A Swiss seller writing in German gets `de-CH` number formatting, and an Austrian seller gets `€ 1.234,50`. Everyone else keeps the plain language default. Seven languages, three countries' conventions, and each document picks both from the **seller**, not the browser.
+
+</Decision>
+
+<Decision n="05" title="A slice ships its API and its screen together, and the API never breaks a phone">
+
+Web and API changes go in one PR. A mobile PR waits until its API is live in production, and a gate script enforces that. Every API change is backward compatible, because an iOS app in someone's pocket doesn't update when we deploy.
+
+</Decision>
+
+## Results
+
+<Stats
+  items={[
+    { value: '4', label: 'Apps on one shared core' },
+    { value: '322', label: 'Source files in the shared core' },
+    { value: '879', label: 'Test files' },
+    { value: '7', label: 'Languages, 3 countries' },
+  ]}
+/>
+
+Web, landing and API in production. The iOS app went live on the App Store in Switzerland on 5 November 2026. E-invoices pass the official validators, and the whole thing was built in fifteen weeks by one engineer and a fleet of agents.
+
+Spoonbill is young, so this page is about the engineering, not the user count. What I'd point a hiring manager to is the shape: a small product surface over a correct core, with every rule written down where the next engineer, human or not, will find it.

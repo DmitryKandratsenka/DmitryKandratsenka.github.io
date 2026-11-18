@@ -1,0 +1,59 @@
+import { Decision, Stats, Figure } from '@/components/cs';
+import { FederationDiagram } from '@/components/diagrams/FederationDiagram';
+
+## The problem
+
+At Nuance Communications, which Microsoft acquired while I was there, the department ran many independent applications. The project's goal was to let users sign in once and move across all of them, and to give every team the same components so the apps felt like one product.
+
+In one line: **sign in once, look like one product, but keep every team free to ship on its own schedule.**
+
+## The architecture
+
+<Figure caption="A host shell owns sign-in and routing. Three independently deployed apps load into it at runtime and share one component library.">
+  <FederationDiagram />
+</Figure>
+
+<Decision n="01" title="Module Federation: composed at runtime, deployed independently">
+
+A host shell handles authentication and routing. Three apps, each in its own repository with its own pipeline, are loaded into it at runtime with webpack Module Federation.
+
+A team ships its app without rebuilding the shell, and the user never sees the seams.
+
+</Decision>
+
+<Decision n="02" title="One component library for the whole department">
+
+I set up a shared library on Material UI, with generic components and utilities, documented in Storybook. It became the department's single source for UI. A new screen started from a story, and the apps stopped drifting apart visually.
+
+</Decision>
+
+<Decision n="03" title="Testing as a team policy, not a phase">
+
+All supported products were covered by Playwright end-to-end tests written as CucumberJS scenarios, reaching 90% coverage. The QA engineers wrote the scenarios in plain language and the developers kept them green. That also made the scenarios readable acceptance criteria for the product side.
+
+</Decision>
+
+<Decision n="04" title="Leading 16 people while owning the product">
+
+I led 10 developers and 6 QA engineers, and acted as Technical Product Manager, Product Owner, Scrum Master and Technical Lead at once. I ran three-month PI planning, built the CI/CD pipelines on Azure DevOps, and kept writing code.
+
+Holding the product and the technical calls together meant fewer handoffs and faster decisions. It also meant knowing when to write the plan down so the team didn't depend on me being in the room.
+
+</Decision>
+
+## Results
+
+<Stats
+  items={[
+    { value: '3', label: 'Projects delivered from scratch to production' },
+    { value: '3', label: 'Independent apps under one sign-in' },
+    { value: '90%', label: 'Automated E2E coverage' },
+    { value: '16', label: 'Engineers and QA led' },
+  ]}
+/>
+
+## Where the playbook started
+
+Two years earlier, at Nuance in Minsk, I led the company's first project to move from plain JavaScript to React, then the initiative to move every front-end application. Before that I had migrated a legacy ActionScript app to HTML5 on my own and built its Java APIs.
+
+Microsoft is where that playbook scaled: an architecture that lets many teams ship independently, a shared library that keeps them consistent, and tests that let a team move fast without breaking things. It's the same playbook I now run with agents.

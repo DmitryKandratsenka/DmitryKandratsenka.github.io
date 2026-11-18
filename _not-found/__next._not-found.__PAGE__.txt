@@ -1,0 +1,38 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/3_wyfc84p5a0b.js"
+3:I[39756,["$2"],"default"]
+4:I[37457,["$2"],"default"]
+5:"/_next/static/chunks/06xwipvh0uukc.js"
+6:I[2971,["$2","$5"],"Header"]
+7:I[22016,["$2","$5"],""]
+13:"ViewportBoundary"
+14:I[97367,["$2"],"$13"]
+15:"MetadataBoundary"
+16:I[97367,["$2"],"$15"]
+17:"$Sreact.suspense"
+:HL["/_next/static/chunks/32kt2214k3mem.css","style"]
+9:X
+c:X
+c:C
+d:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[[["$","$L6",null,{}],["$","section",null,{"className":"mx-auto flex min-h-[60dvh] max-w-6xl flex-col justify-center px-5 py-24 md:px-8","children":[["$","p",null,{"className":"font-mono text-[12px] text-fg-faint","children":"404"}],["$","h1",null,{"className":"mt-3 text-[32px] font-semibold tracking-[-0.03em] text-fg md:text-[44px]","children":"This page isn’t here."}],["$","p",null,{"className":"mt-3 max-w-[48ch] text-[15px] text-fg-muted","children":"The link may be old. The work, the experience and the CV are one click away."}],["$","$L7",null,{"href":"/","className":"press mt-8 inline-flex w-fit items-center gap-2 rounded-lg border border-line-strong px-4 py-2 text-[14px] text-fg hover:bg-surface-2 transition-colors","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":14,"height":14,"fill":"currentColor","viewBox":"0 0 256 256","children":[false,"$undefined","$0:t:t:d:r:props:children:1:props:children:1:props:children:0:props:notFound:0:1:props:children:3:props:children:0:props:children:2"]}]," Back home"]}]]}],["$","footer",null,{"className":"relative border-t border-line","children":["$","div",null,{"className":"mx-auto flex max-w-6xl flex-col gap-3 px-5 py-8 text-[12px] text-fg-faint md:flex-row md:items-center md:justify-between md:px-8","children":["$Le","$Lf"]}]}]],["$L10"],"$L11"]}],"p":"$@12","v":null,"s":"$9"}}]]
+a:[["children",{"s":"/_not-found","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}]}]]}],"p":"$@b","v":"$c","s":"$9"},"c":"$Qd"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/32kt2214k3mem.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/3_wyfc84p5a0b.js","async":true}]],["$","html",null,{"lang":"en","data-theme":"dark","className":"no-js ZJ15Cq_variable ZGwrmq_variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var d=document.documentElement;d.classList.remove('no-js');var s=localStorage.getItem('theme');var t=s==='light'||s==='dark'?s:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');d.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();"}}]}],["$","body",null,{"children":[["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}],"notFound":[[["$","$L6",null,{}],["$","section",null,{"className":"mx-auto flex min-h-[60dvh] max-w-6xl flex-col justify-center px-5 py-24 md:px-8","children":[["$","p",null,{"className":"font-mono text-[12px] text-fg-faint","children":"404"}],["$","h1",null,{"className":"mt-3 text-[32px] font-semibold tracking-[-0.03em] text-fg md:text-[44px]","children":"This page isn’t here."}],["$","p",null,{"className":"mt-3 max-w-[48ch] text-[15px] text-fg-muted","children":"The link may be old. The work, the experience and the CV are one click away."}],["$","$L7",null,{"href":"/","className":"press mt-8 inline-flex w-fit items-center gap-2 rounded-lg border border-line-strong px-4 py-2 text-[14px] text-fg hover:bg-surface-2 transition-colors","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":14,"height":14,"fill":"currentColor","viewBox":"0 0 256 256","children":[false,"$undefined",["$","path",null,{"d":"M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"}]]}]," Back home"]}]]}],["$","footer",null,{"className":"relative border-t border-line","children":["$","div",null,{"className":"mx-auto flex max-w-6xl flex-col gap-3 px-5 py-8 text-[12px] text-fg-faint md:flex-row md:items-center md:justify-between md:px-8","children":[["$","p",null,{"children":["© ",2026," ","Dzmitry Kandratsenka"," · ","Porto, Portugal"]}],["$","p",null,{"className":"flex flex-wrap gap-x-4 gap-y-1","children":[["$","span",null,{"children":"Next.js, Tailwind, Motion. Set in Geist."}],["$","a",null,{"className":"hover:text-fg-muted transition-colors","href":"https://github.com/DmitryKandratsenka","children":"GitHub"}],["$","a",null,{"className":"hover:text-fg-muted transition-colors","href":"https://www.linkedin.com/in/dzmitry-kandratsenka-696059129","children":"LinkedIn"}]]}]]}]}]],[]]}],false]}]]}]]}],"p":"$@8","v":null,"s":"$9"},"c":"$Qa"},"h":{"r":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#0b0c0f","media":"(prefers-color-scheme: dark)"}],["$","meta","3",{"name":"theme-color","content":"#fafafb","media":"(prefers-color-scheme: light)"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$17",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Dzmitry Kandratsenka · Product engineer"}],["$","meta","1",{"name":"description","content":"Product engineer: frontend, fullstack, AI. Ex-Microsoft Principal developer who designs agent systems that build and ship production software."}],["$","link","2",{"rel":"canonical","href":"https://dmitrykandratsenka.github.io/"}],["$","meta","3",{"property":"og:title","content":"Dzmitry Kandratsenka · Product engineer"}],["$","meta","4",{"property":"og:description","content":"Frontend, fullstack, AI. Case studies, experience and CV."}],["$","meta","5",{"property":"og:url","content":"https://dmitrykandratsenka.github.io/"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","8",{"name":"twitter:title","content":"Dzmitry Kandratsenka · Product engineer"}],"$L18","$L19","$L1a"]}]}],null]}],"$L1b"]}],"p":"$@1c","v":null,"s":"$9"}},"a":"$@1d","u":"$@1e","b":"6eF8kWVqthQOqHQ_q4xWV"}
+1f:I[97367,["$2"],"OutletBoundary"]
+21:I[27201,["$2"],"IconMark"]
+e:["$","p",null,{"children":["© ",2026," ","Dzmitry Kandratsenka"," · ","Porto, Portugal"]}]
+f:["$","p",null,{"className":"flex flex-wrap gap-x-4 gap-y-1","children":[["$","span",null,{"children":"Next.js, Tailwind, Motion. Set in Geist."}],["$","a",null,{"className":"hover:text-fg-muted transition-colors","href":"https://github.com/DmitryKandratsenka","children":"GitHub"}],["$","a",null,{"className":"hover:text-fg-muted transition-colors","href":"https://www.linkedin.com/in/dzmitry-kandratsenka-696059129","children":"LinkedIn"}]]}]
+10:["$","script","script-0",{"src":"/_next/static/chunks/06xwipvh0uukc.js","async":true}]
+11:["$","$L1f",null,{"children":["$","$17",null,{"name":"Next.MetadataOutlet","children":"$@20"}]}]
+18:["$","meta","9",{"name":"twitter:description","content":"Frontend, fullstack, AI. Case studies, experience and CV."}]
+19:["$","link","10",{"rel":"icon","href":"/icon.svg?icon.37x7xnwbs69dj.svg","sizes":"any","type":"image/svg+xml"}]
+1a:["$","$L21","11",{}]
+1b:["$","meta",null,{"name":"next-size-adjust","content":""}]
+9:300
+20:null
+1e:true
+9:C
+1d:0
+b:"$undefined"
+8:"$undefined"
+1c:"$undefined"
+12:"$undefined"

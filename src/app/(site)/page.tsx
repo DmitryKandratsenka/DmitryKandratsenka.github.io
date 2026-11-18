@@ -51,10 +51,23 @@ export default function Home() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div>
             <p
-              className="rise mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-3 py-1 text-[12px] text-fg-muted"
+              className="rise mb-6 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/60 py-1 pl-1 pr-3.5 text-[12px] text-fg-muted"
               style={{ ['--i' as string]: 0 }}
             >
-              <span className="size-1.5 rounded-full bg-ok" aria-hidden />
+              <span className="relative shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/avatar.jpg"
+                  alt={profile.name}
+                  width={28}
+                  height={28}
+                  className="size-7 rounded-full object-cover ring-1 ring-line-strong"
+                />
+                <span
+                  className="absolute -bottom-px -right-px size-2 rounded-full bg-ok ring-2 ring-bg"
+                  aria-hidden
+                />
+              </span>
               {profile.location} · {profile.availability}
             </p>
             <h1

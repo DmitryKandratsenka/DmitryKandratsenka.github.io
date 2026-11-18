@@ -343,7 +343,7 @@ export default function Home() {
                 <div>
                   <p className="flex items-center gap-1.5 text-[15px] font-medium text-fg">
                     {p.name}
-                    {'url' in p && <ArrowUpRight size={13} className="nudge text-fg-faint" />}
+                    {p.url && <ArrowUpRight size={13} className="nudge text-fg-faint" />}
                   </p>
                   <p className="mt-0.5 font-mono text-[11px] text-fg-faint">
                     {p.kind} · {p.year}
@@ -366,7 +366,7 @@ export default function Home() {
             );
             return (
               <div key={p.name} data-reveal style={{ ['--i' as string]: i }}>
-                {'url' in p ? (
+                {p.url ? (
                   <a href={p.url} className="nudge-on-hover block transition-colors hover:bg-surface/40">
                     {inner}
                   </a>

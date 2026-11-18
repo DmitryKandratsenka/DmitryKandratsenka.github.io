@@ -212,7 +212,18 @@ export const ventures: Venture[] = [
   },
 ];
 
-export const alsoBuilt = [
+export type Built = {
+  name: string;
+  kind: string;
+  year: string;
+  description: string;
+  detail: string;
+  stack: string[];
+  /** Only when the link is live. */
+  url?: string;
+};
+
+export const alsoBuilt: Built[] = [
   {
     name: 'CatDog',
     kind: 'AI audio app',
@@ -229,9 +240,8 @@ export const alsoBuilt = [
     year: '2025 —',
     description:
       'NestJS API that generates meals, menus and nutrition data with an LLM, with per-user usage limits and App Check so the model bill cannot be farmed.',
-    detail: 'Serves the Mealfy iOS app and site.',
+    detail: 'Built as the backend for the Mealfy iOS app.',
     stack: ['NestJS', 'LLM API', 'Firebase App Check', 'MySQL'],
-    url: 'https://mealfy.app',
   },
   {
     name: 'lead-trail',
@@ -242,7 +252,7 @@ export const alsoBuilt = [
     detail: 'Finds people asking for the products I build. Drafts only, a human posts.',
     stack: ['Node 24', 'TypeScript', 'LLM API', 'Telegram Bot API'],
   },
-] as const;
+];
 
 export const caseStudies = [
   {

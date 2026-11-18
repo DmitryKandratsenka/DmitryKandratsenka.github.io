@@ -153,7 +153,7 @@ export const experience: Role[] = [
     title: 'Junior Software Developer',
     company: 'IPPS',
     start: '12/2014',
-    end: '08/2016',
+    end: '07/2016',
     location: 'Minsk, Belarus',
     summary: 'Full-stack on financial products: Java, Spring MVC, JSP, MySQL.',
     bullets: [

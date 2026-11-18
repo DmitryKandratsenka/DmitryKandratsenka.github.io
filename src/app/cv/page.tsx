@@ -276,7 +276,17 @@ export default function CvPage() {
                 {cvOnline.map((o) => (
                   <li key={o.label}>
                     <span>{o.label}</span>
-                    <a href={o.href}>{o.value}</a>
+                    <a href={o.href}>
+                      {o.value.split('.github.io').length > 1 ? (
+                        <>
+                          {o.value.split('.github.io')[0]}
+                          <wbr />
+                          .github.io
+                        </>
+                      ) : (
+                        o.value
+                      )}
+                    </a>
                   </li>
                 ))}
               </ul>

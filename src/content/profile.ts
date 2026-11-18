@@ -349,8 +349,7 @@ export const cvProjects = [
 ];
 
 export const cvOnline = [
-  { label: 'Portfolio', value: 'dmitrykandratsenka.github.io', href: 'https://dmitrykandratsenka.github.io' },
-  { label: 'Case studies', value: '…github.io/work', href: 'https://dmitrykandratsenka.github.io/#work' },
+  { label: 'Portfolio and case studies', value: 'dmitrykandratsenka.github.io', href: 'https://dmitrykandratsenka.github.io' },
   { label: 'Spoonbill', value: 'spoonbill.app', href: 'https://spoonbill.app' },
   { label: 'Sklad', value: 'sklad.app', href: 'https://sklad.app' },
 ];

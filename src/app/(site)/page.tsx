@@ -8,6 +8,7 @@ import {
   humanDate,
   profile,
   statsAsOf,
+  workedAt,
   ventures,
   yearOf,
 } from '@/content/profile';
@@ -131,6 +132,21 @@ export default function Home() {
           ))}
         </dl>
         <p className="mt-3 px-1 text-[11px] text-fg-faint">Numbers as of {statsAsOf}.</p>
+
+        {/* Worked at: typeset names, no logos. Recognition without colour or trademark noise. */}
+        <div data-reveal className="mt-12 flex flex-col gap-4 md:mt-14 md:flex-row md:items-center md:gap-10">
+          <p className="shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-fg-faint">Worked at</p>
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-3 md:gap-x-10">
+            {workedAt.map((c) => (
+              <li
+                key={c}
+                className="text-[18px] font-semibold tracking-[-0.02em] text-fg-faint transition-colors duration-200 hover:text-fg-muted md:text-[20px]"
+              >
+                {c}
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* ───────────── Selected work ───────────── */}

@@ -39,7 +39,9 @@ export function LaneChart({ compact = false }: { compact?: boolean }) {
               {[0, 6, 12, 18, 24].map((h) => (
                 <span
                   key={h}
-                  className="absolute -translate-x-1/2 tabular-nums first:translate-x-0 last:-translate-x-full"
+                  className={`absolute -translate-x-1/2 tabular-nums first:translate-x-0 last:-translate-x-full ${
+                    compact && (h === 6 || h === 18) ? 'max-sm:hidden' : ''
+                  }`}
                   style={{ left: pct(h * 60) }}
                 >
                   {String(h).padStart(2, '0')}:00

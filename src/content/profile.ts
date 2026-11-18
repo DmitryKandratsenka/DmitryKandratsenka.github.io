@@ -38,6 +38,9 @@ export const heroStats = [
 ] as const;
 export const statsAsOf = '18 Nov 2026';
 
+/** The "Worked at" strip under the hero: names only, no logos, most recognisable first. */
+export const workedAt = ['Microsoft', 'Reddit', 'IVC Evidensia', 'Teya', 'Nuance'];
+
 export type Role = {
   title: string;
   company: string;
